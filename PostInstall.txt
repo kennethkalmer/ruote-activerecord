@@ -1,0 +1,7 @@
+
+For more information on ruote-ar, see http://ruote-ar.rubyforge.org
+
+NOTE: Change this information in PostInstall.txt 
+You can also delete it if you don't want it.
+
+
