@@ -8,8 +8,11 @@ module Ruote
       include EngineContext
       include LocalParticipant
 
+      attr_accessor :store_name
+
       def initialize( options = {} )
         @workitem_class = WorkItem
+        @store_name = options[:store_name]
       end
 
       def consume( workitem )
@@ -31,6 +34,10 @@ module Ruote
 
       def cancel( fei, flavour = nil )
         destroy( fei )
+      end
+
+      def size
+        @workitem_class.count( :conditions => { :store_name => @store_name } )
       end
 
       private

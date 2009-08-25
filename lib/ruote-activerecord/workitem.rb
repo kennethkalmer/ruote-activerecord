@@ -20,6 +20,10 @@ module Ruote
 
           wi.save
         end
+
+        def search( keyword )
+          all( :conditions => ["keywords LIKE ?", "%#{keyword}%"] )
+        end
       end
 
       protected
