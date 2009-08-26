@@ -21,4 +21,5 @@ spec/participant_spec.rb
 spec/ruote-activerecord_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
+spec/workitem_spec.rb
 tasks/rspec.rake

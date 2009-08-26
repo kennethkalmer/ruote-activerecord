@@ -37,7 +37,9 @@ module Ruote
       end
 
       def size
-        @workitem_class.count( :conditions => { :store_name => @store_name } )
+        Model.uncached do
+          @workitem_class.count( :conditions => { :store_name => @store_name } )
+        end
       end
 
       private

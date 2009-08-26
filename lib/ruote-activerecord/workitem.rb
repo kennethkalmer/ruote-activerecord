@@ -21,8 +21,23 @@ module Ruote
           wi.save
         end
 
-        def search( keyword )
-          all( :conditions => ["keywords LIKE ?", "%#{keyword}%"] )
+        def search( keyword, *store_names )
+          store_names.flatten!
+
+          conditions = []
+          values = []
+
+          conditions << "keywords LIKE ?"
+          values << "%#{keyword}%"
+
+          if store_names.any?
+            conditions << "store_name IN (?)"
+            values << store_names
+          end
+
+          Model.uncached do
+            all( :conditions => [ conditions.join( ' AND '), *values ] )
+          end
         end
       end
 
