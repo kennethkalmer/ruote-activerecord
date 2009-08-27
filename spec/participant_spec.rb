@@ -10,8 +10,8 @@ describe Ruote::ActiveRecord::Participant do
 
     @participant.consume( wi )
 
-    Ruote::ActiveRecord::WorkItem.count.should be(1)
-    Ruote::ActiveRecord::WorkItem.first.last_modified.should_not be_nil
+    Ruote::ActiveRecord::Workitem.count.should be(1)
+    Ruote::ActiveRecord::Workitem.first.last_modified.should_not be_nil
   end
 
   it "should be able to cancel workitems" do
@@ -21,7 +21,7 @@ describe Ruote::ActiveRecord::Participant do
 
     @participant.cancel( wi.fei )
 
-    Ruote::ActiveRecord::WorkItem.count.should be(0)
+    Ruote::ActiveRecord::Workitem.count.should be(0)
 
   end
 
@@ -36,7 +36,7 @@ describe Ruote::ActiveRecord::Participant do
 
     @participant.size.should be(1)
 
-    Ruote::ActiveRecord::WorkItem.all.map(&:store_name).should == [ nil, 'alice_store' ]
+    Ruote::ActiveRecord::Workitem.all.map(&:store_name).should == [ nil, 'alice_store' ]
   end
 
   it "should support workitems without a key field"

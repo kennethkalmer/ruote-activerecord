@@ -1,6 +1,6 @@
 module Ruote
   module ActiveRecord
-    class WorkItem < Model
+    class Workitem < Model
       set_table_name Ruote::ActiveRecord.workitem_table
       set_primary_key :fei
 

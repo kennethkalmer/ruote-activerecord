@@ -6,7 +6,7 @@ module Ruote
         # Truncate the tables
         def truncate!
           Ruote::ActiveRecord::Expression.delete_all
-          Ruote::ActiveRecord::WorkItem.delete_all
+          Ruote::ActiveRecord::Workitem.delete_all
         end
 
         # Create the tables required for ActiveRecord storage

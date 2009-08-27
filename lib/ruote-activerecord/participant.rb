@@ -11,7 +11,7 @@ module Ruote
       attr_accessor :store_name
 
       def initialize( options = {} )
-        @workitem_class = WorkItem
+        @workitem_class = Workitem
         @store_name = options[:store_name]
       end
 
@@ -45,7 +45,7 @@ module Ruote
       private
 
       def destroy( fei )
-        wi = Model.uncached { WorkItem.find_by_fei( fei.to_s ) }
+        wi = Model.uncached { Workitem.find_by_fei( fei.to_s ) }
         wi.destroy unless wi.nil?
       end
     end

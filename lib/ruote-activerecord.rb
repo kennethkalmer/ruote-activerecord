@@ -23,7 +23,7 @@ module Ruote
     autoload :Engine,            'ruote-activerecord/engine'
     autoload :Model,             'ruote-activerecord/model'
     autoload :Schema,            'ruote-activerecord/schema'
-    autoload :WorkItem,          'ruote-activerecord/workitem'
+    autoload :Workitem,          'ruote-activerecord/workitem'
 
     # ActiveRecord configuration hash
     mattr_accessor :configuration
