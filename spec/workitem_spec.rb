@@ -49,5 +49,29 @@ describe Ruote::ActiveRecord::Workitem do
       Ruote::ActiveRecord::Workitem.search('a:A', [ 'store1' ]).size.should be(1)
       Ruote::ActiveRecord::Workitem.search('a:A', [ 'store0' ]).size.should be(2)
     end
+
+    it "should convert back to a ruote workitem" do
+      wi = build_workitem('1234-5678', '0_0', 'alice', { :a => 'A' })
+      Ruote::ActiveRecord::Workitem.create_from_workitem( wi, :store_name => 'store0' )
+
+      db_wi = Ruote::ActiveRecord::Workitem.first
+
+      wi = db_wi.to_ruote_workitem
+      wi.should be_a( Ruote::Workitem )
+      wi.fields.should == { :a => 'A' }
+    end
+
+    it "should overwrite duplicate workitems" do
+      wi = build_workitem('1234-5678', '0_0', 'alice', { :a => 'A' })
+      Ruote::ActiveRecord::Workitem.create_from_workitem( wi, :store_name => 'store0' )
+
+      Ruote::ActiveRecord::Workitem.count.should be(1)
+
+      lambda {
+        Ruote::ActiveRecord::Workitem.create_from_workitem( wi, :store_name => 'store0')
+      }.should_not raise_error
+
+      Ruote::ActiveRecord::Workitem.count.should be(1)
+    end
   end
 end

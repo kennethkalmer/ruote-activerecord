@@ -41,7 +41,7 @@ end
 def build_expression( exp_id, options = {} )
   options.reverse_merge!(
     :wfid => '1234-5678',
-    :class => Ruote::SequenceExpression
+    :class => Ruote::Exp::SequenceExpression
   )
 
   fei = Ruote::FlowExpressionId.from_h(

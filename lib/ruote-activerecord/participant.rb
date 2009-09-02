@@ -13,6 +13,7 @@ module Ruote
       def initialize( options = {} )
         @workitem_class = Workitem
         @store_name = options[:store_name]
+        @key_field = options[:key_field]
       end
 
       def consume( workitem )

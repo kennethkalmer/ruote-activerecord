@@ -3,6 +3,7 @@ module Ruote
     class Workitem < Model
       set_table_name Ruote::ActiveRecord.workitem_table
       set_primary_key :fei
+      serialize :wi_fields
 
       class << self
 
@@ -35,10 +36,19 @@ module Ruote
             values << store_names
           end
 
-          Model.uncached do
+          Model.query do
             all( :conditions => [ conditions.join( ' AND '), *values ] )
           end
         end
+      end
+
+      def to_ruote_workitem
+        wi = Ruote::Workitem.new
+        wi.fei = Ruote::FlowExpressionId.from_s( self.fei )
+        wi.fields = self.wi_fields
+        wi.participant_name = self.participant_name
+
+        wi
       end
 
       protected

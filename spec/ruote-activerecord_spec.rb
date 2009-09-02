@@ -2,9 +2,8 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe Ruote::ActiveRecord do
 
-  it "should take a configuration hash" do
-    Ruote::ActiveRecord.configuration = {}
-    Ruote::ActiveRecord.configuration.should == {}
+  it "should take have a configuration hash" do
+    Ruote::ActiveRecord.configuration.should be_a( Hash )
   end
 
   it "should have a default name for the expression table" do

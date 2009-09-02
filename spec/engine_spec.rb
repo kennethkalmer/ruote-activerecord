@@ -6,6 +6,6 @@ describe Ruote::ActiveRecord::Engine do
     engine = Ruote::ActiveRecord::Engine.new
 
     # TODO: Is this really the right way to test it ?
-    engine.context[:s_expression_storage__1].should be_a( Ruote::ActiveRecord::ExpressionStorage )
+    engine.context[:s_expression_storage].should be_a( Ruote::ActiveRecord::ExpressionStorage )
   end
 end

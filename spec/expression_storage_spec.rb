@@ -41,22 +41,22 @@ describe Ruote::ActiveRecord::ExpressionStorage do
 
       @expression_storage.find_expressions( :wfid => 'abcd-5' ).size.should be(2)
 
-      @expression_storage.find_expressions( :wfid => 'abcd-5').first.should be_a( Ruote::SequenceExpression )
+      @expression_storage.find_expressions( :wfid => 'abcd-5').first.should be_a( Ruote::Exp::SequenceExpression )
     end
 
     it "by expression class" do
-      fexp = build_expression('0_0', :class => Ruote::WaitExpression )
+      fexp = build_expression('0_0', :class => Ruote::Exp::WaitExpression )
       @expression_storage[ fexp.fei ] = fexp
 
-      @expression_storage.find_expressions( :class => Ruote::WaitExpression ).size.should be(1)
-      @expression_storage.find_expressions( :class => Ruote::SequenceExpression ).should be_empty
+      @expression_storage.find_expressions( :class => Ruote::Exp::WaitExpression ).size.should be(1)
+      @expression_storage.find_expressions( :class => Ruote::Exp::SequenceExpression ).should be_empty
     end
 
     it "by testing for respond_to" do
       fexp = build_expression('0_0', :wfid => 'abcd-5')
       @expression_storage[ fexp.fei ] = fexp
 
-      fexp = build_expression('0_0', :class => Ruote::WaitExpression )
+      fexp = build_expression('0_0', :class => Ruote::Exp::WaitExpression )
       @expression_storage[ fexp.fei ] = fexp
 
       @expression_storage.find_expressions( :responding_to => :reschedule ).size.should be(1)
