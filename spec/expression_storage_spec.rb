@@ -14,6 +14,15 @@ describe Ruote::ActiveRecord::ExpressionStorage do
     @expression_storage.size.should be(1)
   end
 
+  it "should be able to purge expressions" do
+    fexp = build_expression('0_0')
+
+    @expression_storage[ fexp.fei ] = fexp
+
+    @expression_storage.purge
+    @expression_storage.size.should be(0)
+  end
+
   it "should be able to remove expressions" do
     fexp = build_expression('0_0')
 

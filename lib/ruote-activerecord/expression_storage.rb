@@ -42,7 +42,7 @@ module Ruote
           nil
         end
 
-        fexps = Model.uncached do
+        fexps = Model.query do
           Expression.all( :conditions => conditions ).map { |fexp|
             fexp.to_ruote_expression( @context )
           }
@@ -60,20 +60,22 @@ module Ruote
       end
 
       def []( fei )
-        Model.uncached do
-          e = Expression.find_by_fei( fei.to_s )
+        Model.query do
+          e =  Expression.find_by_fei( fei.to_s )
           e ? e.to_ruote_expression( @context ) : nil
         end
       end
 
       def delete( fei )
-        Expression.delete( fei.to_s )
+        Model.query { Expression.delete( fei.to_s ) }
       end
 
       def size
-        Model.uncached do
-          Expression.count
-        end
+        Model.query { Expression.count }
+      end
+
+      def purge
+        Expression.purge
       end
     end
   end

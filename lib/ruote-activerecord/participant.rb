@@ -38,15 +38,19 @@ module Ruote
       end
 
       def size
-        Model.uncached do
+        Model.query do
           @workitem_class.count( :conditions => { :store_name => @store_name } )
         end
+      end
+
+      def purge
+        Workitem.purge
       end
 
       private
 
       def destroy( fei )
-        wi = Model.uncached { Workitem.find_by_fei( fei.to_s ) }
+        wi = Model.query { Workitem.find_by_fei( fei.to_s ) }
         wi.destroy unless wi.nil?
       end
     end

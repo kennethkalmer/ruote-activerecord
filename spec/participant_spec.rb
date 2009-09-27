@@ -22,7 +22,16 @@ describe Ruote::ActiveRecord::Participant do
     @participant.cancel( wi.fei )
 
     Ruote::ActiveRecord::Workitem.count.should be(0)
+  end
 
+  it "should support purging itself" do
+    wi = build_workitem( '1234-5678', '0_0', 'toto', { :a => 'A'} )
+
+    @participant.consume( wi )
+
+    @participant.purge
+
+    Ruote::ActiveRecord::Workitem.count.should be(0)
   end
 
   it "should support store names" do

@@ -29,7 +29,7 @@ Spec::Runner.configure do |config|
 
   config.before(:all) do
     Ruote::ActiveRecord.connect!
-    #Ruote::ActiveRecord::Schema.reset!
+    Ruote::ActiveRecord::Schema.reset!
   end
 
   config.before(:each) do

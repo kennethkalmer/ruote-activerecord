@@ -13,6 +13,10 @@ if ActiveRecord::VERSION::STRING < '2.3.3'
   raise "ruote-activerecord requires ActiveRecord 2.3.3 or later"
 end
 
+Dir[ File.join( File.dirname(__FILE__), 'ruote-activerecord', 'patches', '*.rb' ) ].each do |patch|
+  require File.join('ruote-activerecord', 'patches', File.basename( patch, '.rb' ) )
+end
+
 module Ruote
   module ActiveRecord
     VERSION = '0.0.1'

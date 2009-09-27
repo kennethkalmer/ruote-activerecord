@@ -40,6 +40,10 @@ module Ruote
             all( :conditions => [ conditions.join( ' AND '), *values ] )
           end
         end
+
+        def purge
+          Model.query { delete_all }
+        end
       end
 
       def to_ruote_workitem
