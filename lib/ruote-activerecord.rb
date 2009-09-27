@@ -28,6 +28,7 @@ module Ruote
     autoload :Model,             'ruote-activerecord/model'
     autoload :Schema,            'ruote-activerecord/schema'
     autoload :Workitem,          'ruote-activerecord/workitem'
+    autoload :Ticket,            'ruote-activerecord/ticket'
 
     # ActiveRecord configuration hash
     mattr_accessor :configuration
@@ -37,9 +38,13 @@ module Ruote
     mattr_accessor :expression_table
     self.expression_table = 'ruote_expressions'
 
-    # The table named used for storing workitems
+    # The table name used for storing workitems
     mattr_accessor :workitem_table
     self.workitem_table = 'ruote_workitems'
+
+    # The table name used for storing tickets
+    mattr_accessor :ticket_table
+    self.ticket_table = 'ruote_tickets'
 
     class << self
 

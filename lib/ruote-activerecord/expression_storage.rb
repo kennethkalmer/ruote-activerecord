@@ -77,6 +77,14 @@ module Ruote
       def purge
         Expression.purge
       end
+
+      def draw_ticket( fexp )
+        Ticket.draw( self.object_id.to_s, fexp.fei.to_s )
+      end
+
+      def discard_all_tickets( fei )
+        Ticket.discard_all( fei.to_s )
+      end
     end
   end
 end
