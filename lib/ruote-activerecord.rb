@@ -29,6 +29,8 @@ module Ruote
     autoload :Schema,            'ruote-activerecord/schema'
     autoload :Workitem,          'ruote-activerecord/workitem'
     autoload :Ticket,            'ruote-activerecord/ticket'
+    autoload :ProcessError,      'ruote-activerecord/process_error'
+    autoload :ErrorJournal,      'ruote-activerecord/error_journal'
 
     # ActiveRecord configuration hash
     mattr_accessor :configuration
@@ -45,6 +47,10 @@ module Ruote
     # The table name used for storing tickets
     mattr_accessor :ticket_table
     self.ticket_table = 'ruote_tickets'
+
+    # The table name used for storing process errors
+    mattr_accessor :process_error_table
+    self.process_error_table = 'ruote_process_errors'
 
     class << self
 

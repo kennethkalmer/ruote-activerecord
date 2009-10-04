@@ -8,6 +8,7 @@ module Ruote
           Ruote::ActiveRecord::Expression.delete_all
           Ruote::ActiveRecord::Workitem.delete_all
           Ruote::ActiveRecord::Ticket.delete_all
+          Ruote::ActiveRecord::ProcessError.delete_all
         end
 
         # Create the tables required for ActiveRecord storage
@@ -53,6 +54,15 @@ module Ruote
           end
 
           add_index Ruote::ActiveRecord.ticket_table, [:holder, :target], :unique => true
+
+          create_table Ruote::ActiveRecord.process_error_table, :id => false, :force => true do |t|
+            t.string :fei, :null => false
+            t.string :wfid
+            t.datetime :created_at
+            t.text :svalue
+
+            t.primary_key :fei
+          end
         end
 
         # Same as #create, without any messages printed to STDOUT
