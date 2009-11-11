@@ -19,7 +19,7 @@ describe Ruote::ActiveRecord::ExpressionStorage do
 
     @expression_storage[ fexp.fei ] = fexp
 
-    @expression_storage.purge
+    @expression_storage.purge!
     @expression_storage.size.should be(0)
   end
 

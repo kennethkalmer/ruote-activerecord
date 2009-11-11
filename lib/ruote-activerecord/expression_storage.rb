@@ -74,7 +74,7 @@ module Ruote
         Model.query { Expression.count }
       end
 
-      def purge
+      def purge!
         Expression.purge
       end
 
