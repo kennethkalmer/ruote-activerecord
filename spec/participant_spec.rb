@@ -14,6 +14,20 @@ describe Ruote::ActiveRecord::Participant do
     Ruote::ActiveRecord::Workitem.first.last_modified.should_not be_nil
   end
 
+  it "should be able to update workitems" do
+    wi = build_workitem( '1234-5678', '0_0', 'toto', { :a => 'A'} )
+
+    @participant.consume( wi )
+
+    Ruote::ActiveRecord::Workitem.count.should be(1)
+    Ruote::ActiveRecord::Workitem.first.last_modified.should_not be_nil
+
+    @participant.update( wi )
+
+    Ruote::ActiveRecord::Workitem.count.should be(1)
+    Ruote::ActiveRecord::Workitem.first.last_modified.should_not be_nil
+  end
+
   it "should be able to cancel workitems" do
     wi = build_workitem( '1234-5678', '0_0', 'toto', { :a => 'A'} )
 

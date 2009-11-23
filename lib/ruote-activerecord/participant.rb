@@ -33,6 +33,8 @@ module Ruote
         )
       end
 
+      alias :update :consume
+
       def cancel( fei, flavour = nil )
         destroy( fei )
       end
